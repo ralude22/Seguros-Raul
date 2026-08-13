@@ -9,6 +9,7 @@
 <title>Raúl Luján Delgado Seguros Generales</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;0,900;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
     --ink:#1B2A3A;
@@ -148,6 +149,27 @@
     margin-top:auto;padding-top:10px;font-size:13.5px;font-weight:700;color:var(--ink-blue-dark);
     display:flex;align-items:center;gap:6px;background:none;border:none;padding-left:0;font-family:'Inter',sans-serif;
   }
+  .ramo-card .toggle-detalle{
+    font-size:12.5px;font-weight:700;color:var(--seal);background:none;border:none;padding:0;
+    display:flex;align-items:center;gap:5px;cursor:pointer;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.03em;
+  }
+  .ramo-card .toggle-detalle svg{width:12px;height:12px;transition:transform .2s;}
+  .ramo-card.open .toggle-detalle svg{transform:rotate(180deg);}
+  .ramo-detalle{display:none;border-top:1px dashed var(--line);padding-top:12px;margin-top:2px;}
+  .ramo-card.open .ramo-detalle{display:block;}
+  .ramo-detalle .detalle-lista{margin:0 0 10px;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px;}
+  .ramo-detalle .detalle-lista li{font-size:12.5px;color:var(--ink-70);padding-left:14px;position:relative;line-height:1.4;}
+  .ramo-detalle .detalle-lista li::before{content:"·";position:absolute;left:0;color:var(--seal);font-weight:700;}
+  .planes-tabla{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:10px;}
+  .planes-tabla th, .planes-tabla td{padding:5px 4px;text-align:center;border-bottom:1px solid var(--line);}
+  .planes-tabla th:first-child, .planes-tabla td:first-child{text-align:left;padding-right:8px;}
+  .planes-tabla th{font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--ink-blue-dark);text-transform:uppercase;font-size:10px;letter-spacing:.02em;}
+  .planes-tabla td.si{color:var(--pine);font-weight:700;}
+  .planes-tabla td.no{color:var(--ink-40);}
+  .beneficios-lista{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;}
+  .beneficios-lista li{font-size:12px;color:var(--ink-70);padding-left:14px;position:relative;}
+  .beneficios-lista li::before{content:"+";position:absolute;left:0;color:var(--ink-blue-dark);font-weight:700;}
+  .beneficios-titulo{font-size:10.5px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-50);margin:0 0 6px;}
 
   /* ---------- proceso ---------- */
   .proceso{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
@@ -438,22 +460,66 @@ const ICONS = {
   engranaje: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.2M12 18.8V21M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M3 12h2.2M18.8 12H21M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>',
 };
 const ramos = [
-  {id:'autos', nombre:'Autos', icon:ICONS.auto, puntos:['Responsabilidad civil obligatoria','Terceros completo o todo riesgo','Granizo, robo e incendio']},
-  {id:'combinado-familiar', nombre:'Combinado Familiar', icon:ICONS.casa, puntos:['Incendio y daños por agua','Robo de contenidos del hogar','Responsabilidad civil familiar']},
+  {id:'autos', nombre:'Autos', icon:ICONS.auto, puntos:['Responsabilidad civil obligatoria','Terceros completo o todo riesgo','Granizo, robo e incendio'],
+    tabla:[
+      {label:'Responsabilidad Civil', e:1,s:1,x:1},
+      {label:'Pérdida total por incendio', e:1,s:1,x:1},
+      {label:'Pérdida parcial por incendio', e:1,s:1,x:1},
+      {label:'Pérdida total por robo o hurto', e:1,s:1,x:1},
+      {label:'Pérdida parcial por robo o hurto', e:0,s:1,x:1},
+      {label:'Destrucción total por accidente', e:0,s:1,x:1},
+      {label:'Daño parcial por accidente (franquicia fija)', e:0,s:0,x:1},
+    ],
+    beneficios:['Extensión a países limítrofes','Servicio de grúa','Reposición de parabrisas o luneta','Reposición de cristales laterales','Cobertura de daños por granizo','Reposición a nuevo de cubiertas']},
+  {id:'combinado-familiar', nombre:'Combinado Familiar', icon:ICONS.casa, puntos:['Incendio y daños por agua','Robo de contenidos del hogar','Responsabilidad civil familiar'],
+    detalle:['Daños materiales por incendio: fuego directo, rayo, explosión y humo','Adicionales por huracán, vendaval, ciclón, tornado y granizo','Si la vivienda queda inhabitable: gastos de remoción de escombros y alojamiento, con sublímite','Reposición a nuevo de electrónicos, telefonía y computación dañados por la caída de un rayo']},
   {id:'comercio-industria', nombre:'Integral de Comercio e Industria', icon:ICONS.tienda, puntos:['Incendio de local y mercadería','RC comercial frente a terceros','Cristales, robo y equipos']},
-  {id:'motos', nombre:'Motos', icon:ICONS.moto, puntos:['RC obligatoria para motovehículos','Terceros completo','Robo e incendio']},
-  {id:'accidentes-personales', nombre:'Accidentes Personales', icon:ICONS.cruz, puntos:['Muerte e invalidez por accidente','Gastos médicos y farmacia','Cobertura dentro y fuera del trabajo']},
-  {id:'consorcios', nombre:'Integral Consorcios', icon:ICONS.edificio, puntos:['Incendio del edificio','RC del consorcio','Cristales y ascensores']},
+  {id:'motos', nombre:'Motos', icon:ICONS.moto, puntos:['RC obligatoria para motovehículos','Terceros completo','Robo e incendio'],
+    tabla:[
+      {label:'Responsabilidad Civil', e:1,s:1,x:1},
+      {label:'Pérdida total por incendio', e:0,s:1,x:1},
+      {label:'Pérdida parcial por incendio', e:0,s:0,x:1},
+      {label:'Pérdida total por robo o hurto', e:0,s:1,x:1},
+      {label:'Pérdida parcial por robo o hurto', e:0,s:0,x:1},
+      {label:'Destrucción total por accidente', e:0,s:1,x:1},
+      {label:'Daño parcial por accidente (deducible)', e:0,s:0,x:1},
+    ],
+    beneficios:['Extensión a países limítrofes','Servicio de grúa (plan Exclusivo)']},
+  {id:'accidentes-personales', nombre:'Accidentes Personales', icon:ICONS.cruz, puntos:['Muerte e invalidez por accidente','Gastos médicos y farmacia','Cobertura dentro y fuera del trabajo'],
+    detalle:['Muerte accidental e invalidez total y permanente por accidente','Asistencia médica y farmacéutica','Cobertura complementaria al seguro automotor para vos y tu grupo familiar ante un accidente de tránsito','Extensible a la práctica de deportes amateur, en competencias y entrenamientos']},
+  {id:'consorcios', nombre:'Integral Consorcios', icon:ICONS.edificio, puntos:['Incendio del edificio','RC del consorcio','Cristales y ascensores'],
+    detalle:['Incendio, robo y responsabilidad civil del consorcio','Cobertura para ascensores y cristales','Equipos electrónicos de uso común','Aplica tanto a edificios pequeños de copropietarios como a consorcios de torres grandes']},
   {id:'caucion', nombre:'Caución', icon:ICONS.sello, puntos:['Garantías de alquiler','Garantías de obra y licitación','Garantías judiciales']},
-  {id:'tecnico', nombre:'Seguro Técnico', icon:ICONS.engranaje, puntos:['Todo riesgo montaje','Rotura de maquinaria','Equipos electrónicos y de contratistas']},
+  {id:'tecnico', nombre:'Seguro Técnico', icon:ICONS.engranaje, puntos:['Todo riesgo montaje','Rotura de maquinaria','Equipos electrónicos y de contratistas'],
+    detalle:['Pensado para proteger la maquinaria y los equipos, uno de los principales capitales de tu actividad','Respuesta inmediata ante siniestros de equipos y maquinaria','Aplica a maquinaria agrícola, camiones y equipos de trabajo','Disponible en distintos niveles de cobertura según el tipo de unidad']},
 ];
+function tablaPlanes(rows){
+  const fila = r => `<tr><td>${r.label}</td><td class="${r.e?'si':'no'}">${r.e?'✓':'—'}</td><td class="${r.s?'si':'no'}">${r.s?'✓':'—'}</td><td class="${r.x?'si':'no'}">${r.x?'✓':'—'}</td></tr>`;
+  return `<table class="planes-tabla"><thead><tr><th>Cobertura</th><th>Esencial</th><th>Superior</th><th>Exclusivo</th></tr></thead><tbody>${rows.map(fila).join('')}</tbody></table>`;
+}
 function ramoCard(r){
-  return `<div class="ramo-card">
+  const tieneDetalle = r.tabla || r.detalle;
+  const detalleId = `detalle-${r.id}`;
+  let detalleHtml = '';
+  if(r.tabla){
+    detalleHtml = tablaPlanes(r.tabla);
+    if(r.beneficios){
+      detalleHtml += `<p class="beneficios-titulo">Beneficios adicionales</p><ul class="beneficios-lista">${r.beneficios.map(b=>`<li>${b}</li>`).join('')}</ul>`;
+    }
+  } else if(r.detalle){
+    detalleHtml = `<ul class="detalle-lista">${r.detalle.map(d=>`<li>${d}</li>`).join('')}</ul>`;
+  }
+  return `<div class="ramo-card" id="card-${r.id}">
     <div class="icon">${r.icon}</div>
     <h3>${r.nombre}</h3>
     <ul>${r.puntos.map(p=>`<li>${p}</li>`).join('')}</ul>
+    ${tieneDetalle ? `<button class="toggle-detalle" onclick="toggleDetalle('${r.id}')">Ver detalle de coberturas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></button>
+    <div class="ramo-detalle" id="${detalleId}">${detalleHtml}</div>` : ''}
     <button class="cotizar" onclick="cotizar('${r.id}')">Cotizar este ramo →</button>
   </div>`;
+}
+function toggleDetalle(id){
+  document.getElementById('card-'+id).classList.toggle('open');
 }
 document.getElementById('ramos-preview').innerHTML = ramos.slice(0,3).map(ramoCard).join('');
 document.getElementById('ramos-full').innerHTML = ramos.map(ramoCard).join('');
