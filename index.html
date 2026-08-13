@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2A3A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Raúl Luján Delgado Seguros Generales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;0,900;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A;
+    --ink-70:rgba(27,42,58,.7);
+    --paper:#F6F3EC;
+    --paper-2:#EDE6D6;
+    --seal:#B08D3E;
+    --seal-dark:#8C6E2E;
+    --pine:#2F5D50;
+    --pine-dark:#234840;
+    --slate:#5C6B7A;
+    --rust:#9C4A31;
+    --ink-blue:#2C4A63;
+    --ink-blue-dark:#1F3549;
+    --sky:#6E93A8;
+    --white:#FFFFFF;
+    --line:rgba(27,42,58,.14);
+    --radius:14px;
+    --shadow:0 10px 30px rgba(27,42,58,.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:76px;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  img{max-width:100%;display:block;}
+
+  /* ---------- perforated divider (signature motif) ---------- */
+  .perf{
+    height:1px;
+    background-image:radial-gradient(circle, var(--ink-70) 1.5px, transparent 1.6px);
+    background-size:14px 1px;
+    background-repeat:repeat-x;
+    background-position:center;
+    opacity:.35;
+    margin:0 auto;
+    max-width:1100px;
+  }
+
+  /* ---------- top nav (desktop) ---------- */
+  .topnav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,243,236,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav-inner{
+    max-width:1100px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-name{font-family:'Fraunces',serif;font-weight:900;font-size:20px;letter-spacing:0.02em;}
+  .brand-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;display:block;margin-top:-2px;}
+  .nav-links{display:flex;gap:6px;}
+  .nav-links button{
+    background:none;border:none;padding:10px 14px;border-radius:999px;
+    font-size:14px;font-weight:600;color:var(--ink-70);
+    font-family:'Inter',sans-serif;
+  }
+  .nav-links button.active{background:var(--ink);color:var(--paper);}
+
+  /* ---------- seal / stamp SVG ---------- */
+  .seal-mark{flex-shrink:0;}
+  .seal-mark circle.ring{fill:none;stroke:var(--seal);stroke-width:1.3;stroke-dasharray:2.4 3;}
+  .seal-mark circle.core{fill:var(--ink);}
+  .seal-mark text{fill:var(--paper);font-family:'Fraunces',serif;font-weight:900;}
+
+  /* ---------- views ---------- */
+  .view{display:none;}
+  .view.active{display:block;}
+  section{max-width:1100px;margin:0 auto;padding:64px 24px;}
+
+  /* ---------- hero ---------- */
+  .hero{padding-top:56px;padding-bottom:48px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
+  .hero-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-blue);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .hero-eyebrow::before{content:"";width:22px;height:1px;background:var(--ink-blue);}
+  .hero h1{font-size:52px;line-height:1.04;font-weight:700;}
+  .hero h1 em{font-style:italic;color:var(--seal-dark);font-weight:600;}
+  .hero p{font-size:17px;line-height:1.6;color:var(--ink-70);max-width:46ch;margin-top:20px;}
+  .hero-ctas{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;}
+  .btn{
+    padding:14px 24px;border-radius:999px;font-weight:600;font-size:14.5px;border:1.5px solid transparent;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:var(--ink-blue-dark);}
+  .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent;}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+
+  .hero-card{
+    background:var(--white);border-radius:20px;padding:28px;box-shadow:var(--shadow);
+    position:relative;border:1px solid var(--line);
+  }
+  .hero-card .stamp{
+    position:absolute;top:-18px;right:-14px;transform:rotate(-9deg);
+    background:var(--seal);color:var(--white);font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.08em;font-weight:600;text-transform:uppercase;
+    padding:10px 14px;border-radius:8px;box-shadow:0 6px 14px rgba(176,141,62,.4);
+  }
+  .hero-card .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);font-size:13.5px;}
+  .hero-card .row:last-child{border-bottom:none;}
+  .hero-card .row span:first-child{color:var(--slate);}
+  .hero-card .row span:last-child{font-family:'IBM Plex Mono',monospace;font-weight:600;}
+  .hero-card h3{font-size:15px;margin-bottom:14px;letter-spacing:.02em;}
+
+  /* ---------- ramos grid ---------- */
+  .section-head{margin-bottom:36px;max-width:60ch;}
+  .section-head .hero-eyebrow{margin-bottom:12px;}
+  .section-head h2{font-size:32px;}
+  .section-head p{color:var(--ink-70);margin-top:10px;font-size:15.5px;line-height:1.6;}
+  .ramos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .ramo-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;
+  }
+  .ramo-card .icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--paper-2);color:var(--ink-blue-dark);}
+  .ramo-card .icon svg{width:22px;height:22px;}
+  .ramo-card h3{font-size:19px;}
+  .ramo-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
+  .ramo-card li{font-size:13.5px;color:var(--ink-70);padding-left:16px;position:relative;}
+  .ramo-card li::before{content:"—";position:absolute;left:0;color:var(--seal);}
+  .ramo-card .cotizar{
+    margin-top:auto;padding-top:10px;font-size:13.5px;font-weight:700;color:var(--ink-blue-dark);
+    display:flex;align-items:center;gap:6px;background:none;border:none;padding-left:0;font-family:'Inter',sans-serif;
+  }
+
+  /* ---------- proceso ---------- */
+  .proceso{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .paso{padding-top:18px;border-top:2px solid var(--ink);}
+  .paso .num{font-family:'IBM Plex Mono',monospace;color:var(--seal-dark);font-size:13px;font-weight:600;}
+  .paso h3{font-size:18px;margin-top:8px;}
+  .paso p{color:var(--ink-70);font-size:14px;margin-top:8px;line-height:1.55;}
+
+  /* ---------- contacto ---------- */
+  .contact-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;}
+  .contact-info h2{font-size:30px;}
+  .contact-info p{color:var(--ink-70);margin-top:14px;line-height:1.6;font-size:15px;max-width:40ch;}
+  .contact-info .item{display:flex;gap:12px;margin-top:22px;font-size:14px;}
+  .contact-info .item .k{font-family:'IBM Plex Mono',monospace;color:var(--slate);min-width:88px;}
+  form{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:12.5px;font-weight:600;color:var(--slate);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em;}
+  .field input,.field select,.field textarea{
+    width:100%;padding:12px 14px;border-radius:8px;border:1.5px solid var(--line);
+    font-family:'Inter',sans-serif;font-size:14.5px;background:var(--paper);color:var(--ink);
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--ink-blue);outline-offset:1px;border-color:var(--ink-blue);}
+  .field textarea{resize:vertical;min-height:90px;}
+  .form-msg{display:none;background:var(--pine);color:var(--white);padding:12px 16px;border-radius:8px;font-size:13.5px;margin-bottom:16px;}
+  .form-msg.show{display:block;}
+
+  /* ---------- agenda ---------- */
+  .agenda-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start;}
+  .cal-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);}
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+  .cal-head h3{font-size:19px;text-transform:capitalize;}
+  .cal-nav{display:flex;gap:6px;}
+  .cal-nav button{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--paper);font-size:15px;}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+  .cal-dow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--slate);text-align:center;padding-bottom:6px;text-transform:uppercase;}
+  .cal-day{
+    aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    border-radius:8px;font-size:13px;padding:6px 2px 4px;background:var(--paper);border:1px solid transparent;position:relative;
+  }
+  .cal-day.pad{visibility:hidden;}
+  .cal-day.today{border-color:var(--seal);font-weight:700;}
+  .cal-day.selected{background:var(--ink);color:var(--paper);}
+  .cal-day button.daynum{background:none;border:none;font:inherit;color:inherit;width:100%;padding:0;}
+  .cal-day .dots{display:flex;gap:2px;margin-top:3px;}
+  .cal-day .dot{width:5px;height:5px;border-radius:50%;}
+  .dot-personal{background:var(--pine);}
+  .dot-trabajo{background:var(--ink-blue);}
+  .dot-seguros{background:var(--seal);}
+  .cal-day.selected .dot-trabajo{background:var(--paper);}
+
+  .agenda-side .box{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:18px;}
+  .agenda-side h4{font-size:14px;text-transform:uppercase;letter-spacing:.05em;font-family:'IBM Plex Mono',monospace;color:var(--slate);margin-bottom:12px;}
+  .day-events{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+  .day-events li{display:flex;align-items:center;gap:8px;font-size:13.5px;padding:8px 10px;background:var(--paper);border-radius:8px;}
+  .day-events li .tag{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .day-events li .txt{flex:1;}
+  .day-events li .time{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--slate);}
+  .day-events li .del{background:none;border:none;color:var(--rust);font-size:15px;padding:2px 4px;}
+  .empty-note{font-size:13px;color:var(--slate);font-style:italic;}
+  .add-form .field{margin-bottom:12px;}
+  .add-form .btn-primary{width:100%;justify-content:center;padding:11px;font-size:13.5px;}
+  .gcal-note{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--slate);line-height:1.5;padding:14px;background:var(--paper-2);border-radius:10px;}
+  .gcal-box{padding-top:6px;}
+  .gcal-status{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:14px;}
+  .gcal-dot{width:8px;height:8px;border-radius:50%;background:var(--rust);flex-shrink:0;}
+  .gcal-dot.on{background:var(--pine);}
+  .gcal-fields .field{margin-bottom:10px;}
+  .gcal-fields input[type="text"]{font-family:'IBM Plex Mono',monospace;font-size:12.5px;}
+  .gcal-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+  .btn-google{background:var(--ink-blue);color:var(--white);}
+  .btn-google:hover{background:var(--ink-blue-dark);}
+  .btn-small{padding:10px 16px;font-size:13px;}
+  .gcal-events{margin-top:14px;}
+  .gcal-events .day-events{max-height:180px;overflow-y:auto;}
+  .sync-check{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-70);margin-top:12px;}
+  .sync-check input{width:15px;height:15px;}
+
+  footer{max-width:1100px;margin:0 auto;padding:40px 24px 100px;display:flex;justify-content:space-between;align-items:center;color:var(--slate);font-size:12.5px;flex-wrap:wrap;gap:12px;}
+
+  /* ---------- bottom tab bar (mobile app feel) ---------- */
+  .bottombar{
+    display:none;position:fixed;bottom:0;left:0;right:0;z-index:60;
+    background:var(--white);border-top:1px solid var(--line);
+    padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+    box-shadow:0 -6px 20px rgba(27,42,58,.08);
+  }
+  .bottombar-inner{display:flex;justify-content:space-around;}
+  .bottombar button{
+    background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:3px;
+    color:var(--slate);font-size:10.5px;font-weight:600;padding:4px 8px;border-radius:10px;
+  }
+  .bottombar button.active{color:var(--ink);}
+  .bottombar svg{width:20px;height:20px;}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;padding-top:32px;}
+    .hero h1{font-size:38px;}
+    .ramos-grid{grid-template-columns:1fr 1fr;}
+    .proceso{grid-template-columns:1fr;gap:28px;}
+    .contact-wrap{grid-template-columns:1fr;}
+    .agenda-wrap{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .bottombar{display:block;}
+    section{padding:40px 20px;}
+  }
+  @media (max-width:520px){
+    .ramos-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:32px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand">
+      <svg class="seal-mark" width="38" height="38" viewBox="0 0 38 38">
+        <circle class="core" cx="19" cy="19" r="14"/>
+        <circle class="ring" cx="19" cy="19" r="17"/>
+        <text x="19" y="24" font-size="13" text-anchor="middle">RD</text>
+      </svg>
+      <div>
+        <span class="brand-name" style="font-size:17px;">Raúl Luján Delgado</span>
+        <span class="brand-tag">Seguros Generales</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <button data-view="inicio" class="active">Inicio</button>
+      <button data-view="seguros">Seguros</button>
+      <button data-view="contacto">Contacto</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== INICIO ===================== -->
+<main class="view active" id="view-inicio">
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow">Raúl Luján Delgado · Seguros Generales</div>
+      <h1>Cada póliza,<br><em>sellada</em> a tu medida.</h1>
+      <p>Asesoramiento personalizado en seguros de autos, motos, hogar, comercio, consorcios, caución y más — con cobertura en un radio de 200 km y atención directa conmigo, sin intermediarios.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" onclick="goTo('seguros')">Ver los ramos ↗</button>
+        <button class="btn btn-ghost" onclick="goTo('contacto')">Pedir cotización</button>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="stamp">Vigente</div>
+      <h3>Resumen de cobertura</h3>
+      <div class="row"><span>Productor</span><span>Raúl L. Delgado</span></div>
+      <div class="row"><span>Ramos</span><span>8 disponibles</span></div>
+      <div class="row"><span>Zona</span><span>200 km a la redonda</span></div>
+      <div class="row"><span>Respuesta</span><span>&lt; 24 hs</span></div>
+      <div class="row"><span>Costo de asesoría</span><span>$0</span></div>
+    </div>
+  </section>
+
+  <div class="perf"></div>
+
+  <section>
+    <div class="section-head">
+      <div class="hero-eyebrow">Ramos</div>
+      <h2>Un asesor, todos tus seguros.</h2>
+      <p>En vez de manejar cinco pólizas con cinco compañías distintas, centralizás todo con un solo punto de contacto.</p>
+    </div>
+    <div class="ramos-grid" id="ramos-preview"></div>
+  </section>
+
+  <div class="perf"></div>
+
+  <section>
+    <div class="section-head">
+      <div class="hero-eyebrow">Cómo funciona</div>
+      <h2 style="font-size:30px;">Tres pasos, sin vueltas.</h2>
+    </div>
+    <div class="proceso">
+      <div class="paso"><div class="num">01</div><h3>Contás tu situación</h3><p>Nos decís qué querés asegurar y cómo estás cubierto hoy, si ya tenés algo contratado.</p></div>
+      <div class="paso"><div class="num">02</div><h3>Comparamos coberturas</h3><p>Cruzamos precio, franquicias y exclusiones entre compañías para encontrar la mejor relación cobertura-costo.</p></div>
+      <div class="paso"><div class="num">03</div><h3>Elegís y quedás protegido</h3><p>Firmás con la compañía elegida y seguimos siendo tu contacto para siniestros y renovaciones.</p></div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== SEGUROS ===================== -->
+<main class="view" id="view-seguros">
+  <section style="padding-top:48px;">
+    <div class="section-head">
+      <div class="hero-eyebrow">Nuestros ramos</div>
+      <h2>Elegí qué querés proteger.</h2>
+      <p>Cada tarjeta resume las coberturas típicas del ramo. Tocá "Cotizar" y te llevamos directo al formulario con el ramo ya seleccionado.</p>
+    </div>
+    <div class="ramos-grid" id="ramos-full"></div>
+  </section>
+</main>
+
+<!-- ===================== CONTACTO ===================== -->
+<main class="view" id="view-contacto">
+  <section style="padding-top:48px;">
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <div class="hero-eyebrow">Contacto</div>
+        <h2>Pedí tu cotización.</h2>
+        <p>Completá el formulario o escribime directamente. Te contacto con opciones concretas de coberturas y precios, sin compromiso.</p>
+        <div class="item"><span class="k mono">Teléfono</span><span><a href="tel:3462662446">3462-662446</a></span></div>
+        <div class="item"><span class="k mono">Email</span><span><a href="mailto:raludelgado@gmail.com">raludelgado@gmail.com</a></span></div>
+        <div class="item"><span class="k mono">Email alt.</span><span><a href="mailto:radel39@hotmail.com">radel39@hotmail.com</a></span></div>
+        <div class="item"><span class="k mono">Zona</span><span>Cobertura en un radio de 200 km</span></div>
+      </div>
+      <div>
+        <div class="form-msg" id="form-msg">¡Listo! Recibimos tu consulta y te vamos a contactar a la brevedad.</div>
+        <form id="contact-form" action="https://formsubmit.co/raludelgado@gmail.com" method="POST">
+          <input type="hidden" name="_cc" value="radel39@hotmail.com">
+          <input type="hidden" name="_subject" value="Nueva consulta de cotización — sitio web">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <div class="field"><label for="c-nombre">Nombre y apellido</label><input id="c-nombre" name="Nombre" required></div>
+          <div class="field"><label for="c-contacto">Email o teléfono</label><input id="c-contacto" name="Contacto" required></div>
+          <div class="field">
+            <label for="c-ramo">Ramo de interés</label>
+            <select id="c-ramo" name="Ramo">
+              <option value="autos">Autos</option>
+              <option value="motos">Motos</option>
+              <option value="accidentes-personales">Accidentes Personales</option>
+              <option value="combinado-familiar">Combinado Familiar</option>
+              <option value="comercio-industria">Integral de Comercio e Industria</option>
+              <option value="consorcios">Integral Consorcios</option>
+              <option value="caucion">Caución</option>
+              <option value="tecnico">Seguro Técnico</option>
+            </select>
+          </div>
+          <div class="field"><label for="c-mensaje">Contanos tu situación</label><textarea id="c-mensaje" name="Mensaje" placeholder="Ej: tengo un auto 2020 y quiero cotizar cobertura todo riesgo"></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Enviar consulta</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="perf" style="margin-bottom:24px;"></div>
+<footer>
+  <span>© 2026 Raúl Luján Delgado — Seguros Generales.</span>
+  <span class="mono">3462-662446 · raludelgado@gmail.com</span>
+</footer>
+
+<nav class="bottombar">
+  <div class="bottombar-inner">
+    <button data-view="inicio" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg>
+      Inicio
+    </button>
+    <button data-view="seguros">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg>
+      Seguros
+    </button>
+    <button data-view="contacto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Contacto
+    </button>
+  </div>
+</nav>
+
+<script>
+/* ================= NAV / VIEW SWITCHING ================= */
+function goTo(viewName){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+viewName).classList.add('active');
+  document.querySelectorAll('.nav-links button, .bottombar button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.view===viewName);
+  });
+  window.scrollTo({top:0,behavior:'instant'});
+}
+document.querySelectorAll('.nav-links button, .bottombar button').forEach(b=>{
+  b.addEventListener('click', ()=>goTo(b.dataset.view));
+});
+
+/* ================= RAMOS DATA ================= */
+const ICONS = {
+  auto: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l1.6-4.8A2 2 0 0 1 6.5 7h11a2 2 0 0 1 1.9 1.2L21 13"/><path d="M3 13h18v4a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1v-1H6.5v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4z"/><circle cx="7.5" cy="17" r="1.4"/><circle cx="16.5" cy="17" r="1.4"/></svg>',
+  casa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-9"/><path d="M10 20v-5h4v5"/></svg>',
+  tienda: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5V9"/><path d="M4 9a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0"/><path d="M5 9v9.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V9"/><path d="M9.5 20v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5"/></svg>',
+  moto: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17" r="2.6"/><circle cx="18.5" cy="17" r="2.6"/><path d="M8 17h5l-1.5-5H9"/><path d="M11.5 12 14 8h3"/><path d="M14 8h3.2l1.3 4"/><path d="M4 12.5h2.5"/></svg>',
+  cruz: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v7M12 21v-7M3 12h7M21 12h-7"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>',
+  edificio: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h.01M13 7h.01M9 11h.01M13 11h.01M9 15h.01M13 15h.01"/><path d="M10 21v-4h4v4"/></svg>',
+  sello: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l1 5-6 3-6-3 1-5z"/><path d="M9 11v6l3-1.5L15 17v-6"/></svg>',
+  engranaje: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.2M12 18.8V21M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M3 12h2.2M18.8 12H21M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>',
+};
+const ramos = [
+  {id:'autos', nombre:'Autos', icon:ICONS.auto, puntos:['Responsabilidad civil obligatoria','Terceros completo o todo riesgo','Granizo, robo e incendio']},
+  {id:'combinado-familiar', nombre:'Combinado Familiar', icon:ICONS.casa, puntos:['Incendio y daños por agua','Robo de contenidos del hogar','Responsabilidad civil familiar']},
+  {id:'comercio-industria', nombre:'Integral de Comercio e Industria', icon:ICONS.tienda, puntos:['Incendio de local y mercadería','RC comercial frente a terceros','Cristales, robo y equipos']},
+  {id:'motos', nombre:'Motos', icon:ICONS.moto, puntos:['RC obligatoria para motovehículos','Terceros completo','Robo e incendio']},
+  {id:'accidentes-personales', nombre:'Accidentes Personales', icon:ICONS.cruz, puntos:['Muerte e invalidez por accidente','Gastos médicos y farmacia','Cobertura dentro y fuera del trabajo']},
+  {id:'consorcios', nombre:'Integral Consorcios', icon:ICONS.edificio, puntos:['Incendio del edificio','RC del consorcio','Cristales y ascensores']},
+  {id:'caucion', nombre:'Caución', icon:ICONS.sello, puntos:['Garantías de alquiler','Garantías de obra y licitación','Garantías judiciales']},
+  {id:'tecnico', nombre:'Seguro Técnico', icon:ICONS.engranaje, puntos:['Todo riesgo montaje','Rotura de maquinaria','Equipos electrónicos y de contratistas']},
+];
+function ramoCard(r){
+  return `<div class="ramo-card">
+    <div class="icon">${r.icon}</div>
+    <h3>${r.nombre}</h3>
+    <ul>${r.puntos.map(p=>`<li>${p}</li>`).join('')}</ul>
+    <button class="cotizar" onclick="cotizar('${r.id}')">Cotizar este ramo →</button>
+  </div>`;
+}
+document.getElementById('ramos-preview').innerHTML = ramos.slice(0,3).map(ramoCard).join('');
+document.getElementById('ramos-full').innerHTML = ramos.map(ramoCard).join('');
+function cotizar(id){
+  document.getElementById('c-ramo').value = id;
+  goTo('contacto');
+}
+
+/* ================= CONTACT FORM (envío real via FormSubmit) ================= */
+document.getElementById('contact-form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form = this;
+  const msg = document.getElementById('form-msg');
+  const btn = form.querySelector('button[type="submit"]');
+  const btnTextOriginal = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+  try{
+    const res = await fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    });
+    if(!res.ok) throw new Error('Fallo el envío');
+    msg.textContent = '¡Listo! Recibimos tu consulta y te vamos a contactar a la brevedad.';
+    msg.style.background = 'var(--pine)';
+    msg.classList.add('show');
+    form.reset();
+  }catch(err){
+    msg.textContent = 'No pudimos enviar el formulario. Escribinos directo a raludelgado@gmail.com o al 3462-662446.';
+    msg.style.background = 'var(--rust)';
+    msg.classList.add('show');
+  }finally{
+    btn.disabled = false;
+    btn.textContent = btnTextOriginal;
+    setTimeout(()=>msg.classList.remove('show'), 7000);
+  }
+});
+
+</script>
+</body>
+</html>
