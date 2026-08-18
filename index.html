@@ -746,9 +746,7 @@ function copiarRecurso(){
 }
 document.getElementById('ramos-preview').innerHTML = ramos.slice(0,3).map(ramoCard).join('');
 document.getElementById('ramos-full').innerHTML = ramos.map(ramoCard).join('');
-function cotizar(id){
-  document.getElementById('c-ramo').value = id;
-  goTo('contacto');
+function actualizarRecursoBanner(id){
   const banner = document.getElementById('recurso-banner');
   if(id === 'autos' || id === 'motos'){
     banner.classList.add('show');
@@ -756,6 +754,15 @@ function cotizar(id){
     banner.classList.remove('show');
   }
 }
+function cotizar(id){
+  document.getElementById('c-ramo').value = id;
+  goTo('contacto');
+  actualizarRecursoBanner(id);
+}
+document.getElementById('c-ramo').addEventListener('change', function(){
+  actualizarRecursoBanner(this.value);
+});
+actualizarRecursoBanner(document.getElementById('c-ramo').value);
 function cerrarRecursoBanner(){
   document.getElementById('recurso-banner').classList.remove('show');
 }
