@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Grupo Delgado Seguros Generales</title>
-<meta name="description" content="Asesoramiento personalizado en seguros de autos, motos, hogar, comercio, consorcios, caución y más — con cobertura en un radio de 200 km. Productores Asesores de Seguros, Mat. S.S.N. 27677 y 101510.">
+<meta name="description" content="Asesoramiento personalizado en seguros de autos, motos, hogar, comercio, consorcios, caución y más — con cobertura en un radio de 200 km desde Venado Tuerto. Productores Asesores de Seguros, Mat. S.S.N. 27677 y 101510.">
 <meta property="og:title" content="Grupo Delgado — Seguros Generales">
 <meta property="og:description" content="Asesoramiento personalizado en seguros de autos, motos, hogar, comercio, consorcios, caución y más, sin intermediarios.">
 <meta property="og:type" content="website">
@@ -84,9 +84,9 @@
   .brand-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;display:block;margin-top:-2px;}
   .nav-links{display:flex;gap:6px;}
   .nav-links button{
-    background:none;border:none;padding:10px 14px;border-radius:999px;
-    font-size:14px;font-weight:600;color:var(--ink-70);
-    font-family:'Inter',sans-serif;
+    background:none;border:none;padding:10px 12px;border-radius:999px;
+    font-size:13.5px;font-weight:600;color:var(--ink-70);
+    font-family:'Inter',sans-serif;white-space:nowrap;
   }
   .nav-links button.active{background:var(--ink);color:var(--paper);}
 
@@ -214,6 +214,36 @@
     margin-left:auto;background:none;border:none;color:var(--ink-70);font-size:16px;cursor:pointer;
     text-decoration:none;line-height:1;
   }
+
+  /* ---------- info cards (siniestros / A.R.T.) ---------- */
+  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .info-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+  .info-card .icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--paper-2);color:var(--ink-blue-dark);margin-bottom:10px;}
+  .info-card .icon svg{width:18px;height:18px;}
+  .info-card h4{font-size:15px;margin:0 0 6px;}
+  .info-card p{font-size:13.5px;color:var(--ink-70);margin:0;line-height:1.55;}
+
+  .emergencia-wrap{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px;}
+  .tel-card{background:var(--ink);color:var(--paper);border-radius:var(--radius);padding:18px 22px;flex:1;min-width:230px;}
+  .tel-card .label{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;opacity:.75;}
+  .tel-card .num{font-family:'IBM Plex Mono',monospace;font-size:21px;font-weight:700;margin-top:5px;}
+  .tel-card .num a{color:inherit;text-decoration:none;}
+  .tel-card.accent{background:var(--seal);}
+
+  .alert-strip{
+    display:flex;gap:12px;align-items:flex-start;background:var(--paper-2);border:1px solid var(--seal);
+    border-radius:12px;padding:14px 16px;margin:20px 0;font-size:13.5px;color:var(--ink);line-height:1.5;
+  }
+  .alert-strip .icon{flex-shrink:0;width:20px;height:20px;color:var(--seal-dark);}
+
+  @media (max-width:860px){
+    .info-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:520px){
+    .info-grid{grid-template-columns:1fr;}
+    .emergencia-wrap{flex-direction:column;}
+  }
+
   .recurso-info h4{font-size:17px;margin:0 0 8px;color:var(--ink);}
   .recurso-info p{font-size:13.5px;color:var(--ink-70);line-height:1.55;margin:0 0 16px;}
   .recurso-actions{display:flex;gap:10px;flex-wrap:wrap;}
@@ -389,6 +419,8 @@
     <div class="nav-links">
       <button data-view="inicio" class="active">Inicio</button>
       <button data-view="seguros">Seguros</button>
+      <button data-view="siniestros">Siniestros</button>
+      <button data-view="art">A.R.T.</button>
       <button data-view="contacto">Contacto</button>
     </div>
   </div>
@@ -400,7 +432,7 @@
     <div>
       <div class="hero-eyebrow">Grupo Delgado · Seguros Generales</div>
       <h1>Cada póliza,<br><em>sellada</em> a tu medida.</h1>
-      <p>Asesoramiento personalizado en seguros de autos, motos, hogar, comercio, consorcios, caución y más — con cobertura en un radio de 200 km y atención directa con nosotros, sin intermediarios.</p>
+      <p>Asesoramiento personalizado en seguros de autos, motos, hogar, comercio, consorcios, caución y más — con cobertura en un radio de 200 km desde Venado Tuerto y atención directa con nosotros, sin intermediarios.</p>
       <div class="hero-ctas">
         <button class="btn btn-primary" onclick="goTo('seguros')">Ver los ramos ↗</button>
         <button class="btn btn-ghost" onclick="goTo('contacto')">Pedir cotización</button>
@@ -410,7 +442,7 @@
       <div class="stamp">Vigente</div>
       <h3>Resumen de cobertura</h3>
       <div class="row"><span>Productores</span><span>Raúl y Didier Delgado</span></div>
-      <div class="row"><span>Zona</span><span>200 km a la redonda</span></div>
+      <div class="row"><span>Zona</span><span>200 km desde Venado Tuerto</span></div>
       <div class="row"><span>Respuesta</span><span>&lt; 24 hs</span></div>
       <div class="row"><span>Costo de asesoría</span><span>$0</span></div>
     </div>
@@ -501,6 +533,169 @@ _______________________________
 Firma y aclaración</pre>
         <button class="btn-recurso" onclick="copiarRecurso()" id="btn-copiar">Copiar texto</button>
       </div>
+</main>
+
+<!-- ===================== SINIESTROS ===================== -->
+<main class="view" id="view-siniestros">
+  <section style="padding-top:48px;">
+    <div class="section-head">
+      <div class="hero-eyebrow">Siniestros</div>
+      <h2>¿Tuviste un siniestro? Estos son los pasos.</h2>
+      <p>Trabajamos principalmente con Cooperación Seguros. Guardá esta información: es lo primero que vas a necesitar el día que te pase algo.</p>
+    </div>
+
+    <div class="emergencia-wrap">
+      <div class="tel-card accent">
+        <div class="label">Denuncia de siniestros — 24 hs</div>
+        <div class="num"><a href="tel:08007777070">0800-777-7070</a></div>
+      </div>
+      <div class="tel-card">
+        <div class="label">Grúas — 24 hs</div>
+        <div class="num"><a href="tel:08004440266">0800-444-0266</a></div>
+      </div>
+      <div class="tel-card">
+        <div class="label">Grúas — línea alternativa</div>
+        <div class="num"><a href="tel:03462437800">03462-437800</a></div>
+      </div>
+    </div>
+
+    <div class="alert-strip">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>
+      <div>Tenés un plazo de <strong>72 horas</strong> desde ocurrido el hecho para formalizar la denuncia por escrito ante la compañía. Cuanto antes nos avises, más rápido avanza tu gestión.</div>
+    </div>
+  </section>
+
+  <div class="perf"></div>
+
+  <section>
+    <div class="section-head">
+      <div class="hero-eyebrow">Paso a paso</div>
+      <h2 style="font-size:30px;">Qué hacer apenas ocurre.</h2>
+    </div>
+    <div class="proceso">
+      <div class="paso"><div class="num">01</div><h3>Avisanos de inmediato</h3><p>Comunicate con nosotros o directamente al 0800-777-7070. Si hay heridos, priorizá siempre la asistencia médica.</p></div>
+      <div class="paso"><div class="num">02</div><h3>Documentá todo</h3><p>Sacá fotos de los daños sin mover los vehículos (salvo que generen riesgo), y reuní los datos del otro vehículo involucrado: patente, marca, modelo y aseguradora.</p></div>
+      <div class="paso"><div class="num">03</div><h3>Formalizá la denuncia</h3><p>Dentro de las 72 horas, con nosotros, por Asegurados OnLine o al 0800-777-7070. Vas a recibir la copia por mail o WhatsApp.</p></div>
+    </div>
+  </section>
+
+  <div class="perf"></div>
+
+  <section>
+    <div class="section-head">
+      <div class="hero-eyebrow">Tené a mano</div>
+      <h2 style="font-size:26px;">Documentación habitual.</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg></div>
+        <h4>Datos personales</h4>
+        <p>DNI, cédula verde, licencia de conducir y certificado de cobertura vigente al momento del siniestro.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+        <h4>Datos del hecho</h4>
+        <p>Fecha, hora y lugar exacto. Datos de testigos si los hubiera, y denuncia policial en caso de robo o lesiones.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-8 4 8M6.5 12h3M14 15V7h4a3 3 0 0 1 0 6h-4"/></svg></div>
+        <h4>Del tercero</h4>
+        <p>Patente, marca, modelo, año y aseguradora del otro vehículo, más los datos de contacto de su conductor.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="12" r="3.5"/></svg></div>
+        <h4>Fotos</h4>
+        <p>De los daños, la posición de los vehículos y el lugar del hecho, antes de mover nada si es seguro hacerlo.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 4H8l1-4z"/><path d="M6 7h12l-1 13a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1L6 7z"/></svg></div>
+        <h4>Presupuesto</h4>
+        <p>De reparación de los daños, para agilizar la liquidación del siniestro con la compañía.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div>
+        <h4>Franquicia</h4>
+        <p>Solicitanos el link de pago de la franquicia, o llamá al 0800-777-7070 para que te asesoremos con los pasos a seguir.</p>
+      </div>
+    </div>
+    <div class="hero-ctas" style="margin-top:28px;">
+      <button class="btn btn-primary" onclick="goTo('contacto')">Contactanos por tu siniestro</button>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== A.R.T. ===================== -->
+<main class="view" id="view-art">
+  <section style="padding-top:48px;">
+    <div class="section-head">
+      <div class="hero-eyebrow">A.R.T.</div>
+      <h2>Riesgos del Trabajo para tu empresa.</h2>
+      <p>Comercializamos la cobertura de A.R.T. con Prevención A.R.T., cumpliendo con la Ley N° 24.557: accidentes de trabajo, accidentes in itinere y enfermedades profesionales de tu personal.</p>
+    </div>
+
+    <div class="emergencia-wrap">
+      <div class="tel-card accent">
+        <div class="label">Emergencias y traslados — 24 hs</div>
+        <div class="num"><a href="tel:08004444278">0800-4444-278</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf"></div>
+
+  <section>
+    <div class="section-head">
+      <div class="hero-eyebrow">Qué cubre</div>
+      <h2 style="font-size:30px;">Protección integral para tu equipo.</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg></div>
+        <h4>Accidentes de trabajo</h4>
+        <p>Cualquier hecho súbito ocurrido en el lugar y horario de trabajo, con motivo o en ocasión de la tarea.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l1.6-4.8A2 2 0 0 1 6.5 7h11a2 2 0 0 1 1.9 1.2L21 13"/><path d="M3 13h18v4a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1v-1H6.5v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4z"/></svg></div>
+        <h4>Accidentes in itinere</h4>
+        <p>Ocurridos en el trayecto entre el domicilio del trabajador y su lugar de trabajo, sin desvíos ajenos al recorrido.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M8 7h5.5a2.5 2.5 0 0 1 0 5H9a2.5 2.5 0 0 0 0 5h6"/></svg></div>
+        <h4>Enfermedades profesionales</h4>
+        <p>Las incluidas en el listado oficial de la Ley 24.557, originadas por la actividad o exposición laboral.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.4 2.5-3 2.5-5A6.5 6.5 0 0 0 8.8 6.3M5 10c-1.5 1.4-2.5 3-2.5 5A6.5 6.5 0 0 0 15.2 17.7"/><path d="M12 8v4l2.5 1.5"/></svg></div>
+        <h4>Asistencia médica y farmacéutica</h4>
+        <p>Prestaciones en especie: atención médica, medicamentos, prótesis, ortopedia y rehabilitación hasta el alta.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg></div>
+        <h4>Prestaciones dinerarias</h4>
+        <p>Según el grado de incapacidad, conforme lo establece la Ley de Riesgos del Trabajo.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.2M12 18.8V21M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M3 12h2.2M18.8 12H21M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg></div>
+        <h4>Prevención de riesgos</h4>
+        <p>Asesoramiento para tu empresa en prevención laboral, buscando reducir la siniestralidad en el trabajo.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf"></div>
+
+  <section>
+    <div class="section-head">
+      <div class="hero-eyebrow">Ante un accidente</div>
+      <h2 style="font-size:30px;">Qué hacer, paso a paso.</h2>
+    </div>
+    <div class="proceso">
+      <div class="paso"><div class="num">01</div><h3>Avisá de inmediato</h3><p>El trabajador accidentado informa a su empleador apenas ocurre el hecho, sin demoras.</p></div>
+      <div class="paso"><div class="num">02</div><h3>Comunicate con Prevención A.R.T.</h3><p>El empleador se contacta al 0800-4444-278 para emergencias o traslados, las 24 horas los 365 días del año.</p></div>
+      <div class="paso"><div class="num">03</div><h3>Atención médica y denuncia</h3><p>El trabajador es atendido en un centro médico de la red de prestadores, presentando su credencial. La denuncia se completa por PreveNET, teléfono o en el prestador.</p></div>
+    </div>
+    <div class="hero-ctas" style="margin-top:28px;">
+      <button class="btn btn-primary" onclick="cotizar('art')">Cotizar A.R.T. para tu empresa</button>
     </div>
   </section>
 </main>
@@ -516,7 +711,7 @@ Firma y aclaración</pre>
         <div class="item"><span class="k mono">Teléfono</span><span><a href="tel:3462662446">3462-662446</a></span></div>
         <div class="item"><span class="k mono">Email</span><span><a href="mailto:raludelgado@gmail.com">raludelgado@gmail.com</a></span></div>
         <div class="item"><span class="k mono">Email alt.</span><span><a href="mailto:radel39@hotmail.com">radel39@hotmail.com</a></span></div>
-        <div class="item"><span class="k mono">Zona</span><span>Cobertura en un radio de 200 km</span></div>
+        <div class="item"><span class="k mono">Zona</span><span>Cobertura en un radio de 200 km desde Venado Tuerto</span></div>
       </div>
       <div>
         <div class="recurso-banner" id="recurso-banner">
@@ -546,6 +741,7 @@ Firma y aclaración</pre>
               <option value="consorcios">Integral Consorcios</option>
               <option value="caucion">Caución</option>
               <option value="tecnico">Seguro Técnico</option>
+              <option value="art">A.R.T. (Riesgos del Trabajo)</option>
             </select>
           </div>
           <div class="field"><label for="c-mensaje">Contanos tu situación</label><textarea id="c-mensaje" name="Mensaje" placeholder="Ej: tengo un auto 2020 y quiero cotizar cobertura todo riesgo"></textarea></div>
@@ -599,6 +795,14 @@ Firma y aclaración</pre>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg>
       Seguros
     </button>
+    <button data-view="siniestros">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>
+      Siniestros
+    </button>
+    <button data-view="art">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      A.R.T.
+    </button>
     <button data-view="contacto">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       Contacto
@@ -640,6 +844,7 @@ const ICONS = {
   bici: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5 9 8h4l3 4.5"/><path d="M9 8h5"/><path d="M12 12.5h6.5"/></svg>',
   maletin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>',
   hotel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/><path d="M13 13h6a2 2 0 0 1 2 2v3"/><path d="M3 18h18"/><circle cx="7" cy="11" r="1.3"/></svg>',
+  escudo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>',
 };
 const ramos = [
   {id:'autos', nombre:'Autos', icon:ICONS.auto, puntos:['Responsabilidad civil obligatoria','Terceros completo o todo riesgo','Granizo, robo e incendio'],
@@ -700,6 +905,8 @@ const ramos = [
     detalle:['Seguro Colectivo de Vida Obligatorio (Decreto 1567/74): suma uniforme para todo trabajador en relación de dependencia entre 14 y 65 años, de contratación obligatoria','Ley de Contrato de Trabajo 20.744 y Ley Agraria 26.727: cubre muerte e invalidez total y permanente con suma equivalente a medio sueldo o un sueldo por año trabajado','Convenio Mercantil C.C.T. 130/75: obligatorio para empleados de comercio, con suma asegurada de 12 sueldos de la categoría inicial administrativa','Ley de Servicio Doméstico 26.844: indemnización por muerte o invalidez del personal de casas particulares','Seguro Modular: traslada el riesgo de las indemnizaciones de la LCT y Ley Agraria a bajo costo, con módulos de suma asegurada desde $700.000 hasta $1.500.000']},
   {id:'concesionarias', nombre:'Integral Concesionarias', icon:ICONS.auto, puntos:['Incendio de edificio y contenido general de la agencia','Robo de contenido general y de las unidades en exposición','Responsabilidad civil comprensiva por la actividad'],
     detalle:['Para agencias con exposición y venta de unidades nuevas y/o usadas, con o sin taller mecánico y venta de repuestos: autos y pick-ups, motos y ciclomotores, camiones y acoplados, y maquinaria e implementos agrícolas','Incendio de edificio y contenido general (coberturas obligatorias), con adicionales de huracán, vendaval, ciclón y tornado','Robo de contenido general, incluyendo las unidades en exposición dentro del local las 24 horas y en playa de exposición durante el horario de atención al público','Opcionales: electrónicos, telefonía y computación; bienes de uso; equipos portables; objetos específicos; robo de valores en mostrador o caja fuerte; y cristales','Responsabilidad civil comprensiva por el ejercicio de la actividad, con adicional opcional de guarda de vehículos en garaje cerrado (taller)','Aplica a zona urbana del resto del país; se excluyen los grandes centros urbanos (CABA, GBA, La Plata, Rosario, Córdoba, Mar del Plata, entre otros)']},
+  {id:'art', nombre:'A.R.T. (Riesgos del Trabajo)', icon:ICONS.escudo, puntos:['Cobertura obligatoria para el personal en relación de dependencia','Accidentes de trabajo, in itinere y enfermedades profesionales','Comercializado con Prevención A.R.T.'],
+    detalle:['Cumple con la Ley de Riesgos del Trabajo N° 24.557: cubre accidentes de trabajo, accidentes in itinere (en el trayecto entre el domicilio y el trabajo) y enfermedades profesionales incluidas en el listado oficial','Trabajamos con Prevención A.R.T., que cuenta con Centros Médicos Laborales propios y una red de prestadores en todo el país','Incluye prestaciones en especie (asistencia médica, farmacéutica, prótesis y rehabilitación) y prestaciones dinerarias según el grado de incapacidad','Servicio de asesoramiento en prevención de riesgos laborales para reducir la siniestralidad de tu empresa','Línea gratuita de emergencias 0800-4444-278, disponible las 24 horas los 365 días del año','Mirá la pestaña A.R.T. del menú para conocer el paso a paso ante un accidente de trabajo']},
 ];
 function tablaPlanes(rows){
   const fila = r => `<tr><td>${r.label}</td><td class="${r.e?'si':'no'}">${r.e?'✓':'—'}</td><td class="${r.s?'si':'no'}">${r.s?'✓':'—'}</td><td class="${r.x?'si':'no'}">${r.x?'✓':'—'}</td></tr>`;
