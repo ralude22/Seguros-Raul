@@ -176,14 +176,20 @@
   .beneficios-lista li::before{content:"+";position:absolute;left:0;color:var(--ink-blue-dark);font-weight:700;}
   .beneficios-titulo{font-size:10.5px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-50);margin:0 0 6px;}
 
-  .recursos-section{
-    background:linear-gradient(180deg, var(--paper-2), transparent 140px);
-    border-radius:24px; padding:28px 20px 8px; margin:0 -20px;
+  .recursos-panel{
+    background:linear-gradient(180deg, var(--paper-2), transparent 220px);
+    border-radius:24px; padding:32px 24px;
+    display:flex; align-items:flex-start; gap:32px; flex-wrap:wrap;
   }
+  .recursos-panel .section-head{margin-bottom:0;flex:1 1 260px;}
   .recurso-box{
     background:var(--white);border:1px solid var(--line);border-left:5px solid var(--seal);
     border-radius:var(--radius);padding:24px;box-shadow:0 14px 34px rgba(27,42,58,.14);
-    position:relative;
+    position:relative;flex:1 1 380px;max-width:520px;
+  }
+  @media (max-width:700px){
+    .recursos-panel{flex-direction:column;}
+    .recurso-box{max-width:none;width:100%;}
   }
   .recurso-badge{
     display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
@@ -486,7 +492,8 @@
     <div class="ramos-grid" id="ramos-full"></div>
   </section>
 
-  <section style="padding-top:8px;" id="recursos-section" class="recursos-section">
+  <section style="padding-top:8px;" id="recursos-section">
+   <div class="recursos-panel">
     <div class="section-head">
       <div class="hero-eyebrow">Recursos</div>
       <h2>Modelos y notas útiles.</h2>
@@ -533,6 +540,9 @@ _______________________________
 Firma y aclaración</pre>
         <button class="btn-recurso" onclick="copiarRecurso()" id="btn-copiar">Copiar texto</button>
       </div>
+    </div>
+   </div>
+  </section>
 </main>
 
 <!-- ===================== SINIESTROS ===================== -->
